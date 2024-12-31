@@ -70,9 +70,6 @@ class FileUploadDownloadTestCase(APITestCase):
             expected_content = f.read()
         self.assertEqual(response.getvalue(), expected_content)
         
-        # tear down
-        if os.path.exists(self.test_file_uploaded_path):
-            os.remove(self.test_file_uploaded_path)
 
 
     def test_name_duplicate_test(self):
@@ -101,6 +98,8 @@ class FileUploadDownloadTestCase(APITestCase):
             })
             self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
         
+        if os.path.exists(self.test_file_uploaded_path):
+            os.remove(self.test_file_uploaded_path)
 
             
             
@@ -143,3 +142,8 @@ class FileUploadDownloadTestCase(APITestCase):
             file_path = os.path.join("repository", file_name)
             os.remove(file_path)
         
+    def tear_down():
+        if os.path.exists(self.test_file_uploaded_path):
+            os.remove(self.test_file_uploaded_path)
+        else:
+            logger.info("test file uploaded path does not exist.")
