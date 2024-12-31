@@ -1,8 +1,9 @@
 from django.test import TestCase
+import logging
 
 from .models import Person
 
-# Create your tests here.
+logger = logging.getLogger(__name__)
 
 class DBTest(TestCase):
     
@@ -32,3 +33,7 @@ class DBTest(TestCase):
         Person.objects.filter(name="b").delete()
         self.assertEqual(Person.objects.count(), 0)
         
+    def test_log(self):
+        
+        logger.info("hi")
+        logger.warning("warning!")
