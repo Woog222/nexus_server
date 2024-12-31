@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'test_app',
+    'engine',
 ]
 
 MIDDLEWARE = [
@@ -203,11 +204,11 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
-        # 'engine' : {
-        #     'handlers' : ['nexus_file'],
-        #     'level' : 'INFO',
-        #     'progatate' : False
-        # },
+        'engine' : {
+            'handlers' : ['engine_file'],
+            'level' : 'INFO',
+            'progatate' : False
+        },
         'test_app' : {
             'handlers' : ['test_file'],
             'level' : 'INFO',
